@@ -3,7 +3,7 @@ jobs:
   serial: true
   plan:
   - put: lock
-    params: {acquire: true}
+    params: {claim: lock}
   - get: bosh-repave-repo
     trigger: false
   - get: scheduler
