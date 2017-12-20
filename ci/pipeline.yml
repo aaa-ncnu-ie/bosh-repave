@@ -6,7 +6,7 @@ jobs:
     params: {claim: lock}
   - get: bosh-repave-repo
     trigger: false
-  - get: scheduler
+  - get: scheduler {{scheduler-time-window-start}} to {{scheduler-time-window-stop}}
     trigger: true
   - task: repave
     file: bosh-repave-repo/ci/tasks/repave/task.yml
@@ -29,7 +29,7 @@ resources:
   source:
     uri: https://github.com/pivotalservices/bosh-repave.git
     branch: master
-- name: scheduler
+- name: scheduler {{scheduler-time-window-start}} to {{scheduler-time-window-stop}}
   type: time
   source:
     start: {{scheduler-time-window-start}}
